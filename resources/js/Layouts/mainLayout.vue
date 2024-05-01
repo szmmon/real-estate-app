@@ -8,7 +8,7 @@
                 <div class="font-medium text-indigo-200 dark:text-indigo-500 text-xl text-center bold">
                     <Link :href="route('listing.index')">App</Link>
                 </div>
-                <div class="font-medium text-lg bg-indigo-500 hover:bg-indigo-400 text-white p-2 rounded-md">
+                <div class="button-primary">
                     <Link :href="route('listing.create')">Create listing</Link>
                 </div>
             </nav>
