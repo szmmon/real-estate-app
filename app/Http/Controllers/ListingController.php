@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         return inertia('Listing/index',
-        ['listings' => Listing::all()]);
+        ['listings' => Listing::orderByDesc('created_at')->paginate(10)]);
     }
 
     /**
@@ -59,6 +63,8 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
+        Gate::authorize('update', $listing);
+
          return inertia(
             'Listing/edit',
             [
