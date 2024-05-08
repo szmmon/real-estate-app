@@ -1,6 +1,6 @@
 <template>
 
-    <Filters/>
+    <Filters :filters="filters" />
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <Listing v-for="listing in listings.data" :key="listing.id" :listing="listing" />
@@ -16,5 +16,8 @@ import { useMonthlyPayment } from "@/Composables/useMonthlyPayment.js";
 import Listing from "@/Pages/Listing/Index/Components/listing.vue";
 import Pagination from "@/Components/UI/pagination.vue";
 import Filters from "@/Pages/Index/Components/filters.vue"
-defineProps({ listings: Object });
+defineProps({
+  listings: Object,
+  filters: Object,
+})
 </script>
