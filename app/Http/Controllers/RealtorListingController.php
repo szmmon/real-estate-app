@@ -9,9 +9,19 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class RealtorListingController extends Controller
 {
-    public function index(){
+
+    public function index(Request $request){
+        $filters = [
+        'deleted' => $request->boolean('deleted')
+    ];
+        
         return inertia('Realtor/index',
-        ['listings' => FacadesAuth::user()->listing]);
+        ['listings' => FacadesAuth::user()
+        ->listing()
+        ->latest()
+        ->filter($filters)
+        ->get()
+        ]);
     }
 
 
