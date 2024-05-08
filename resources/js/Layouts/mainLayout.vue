@@ -9,9 +9,9 @@
                     <Link :href="route('listing.index')">App</Link>
                 </div>
                 <div v-if="user" class="flex items-center gap-4">
-                    <div class="text-sm text-gray-400" >
+                    <Link :href="route('realtor.listing.index')" class="text-sm text-gray-400" >
                         {{ user.email }}
-                    </div>
+                    </Link>
                     <div class="button-primary">
                         <Link :href="route('listing.create')">Create listing</Link>
                     </div>

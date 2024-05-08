@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'by_user_id' => 1
         ]);
         Listing::factory(20)->create([
-            'by_user_id' => 2
+            'by_user_id' => 3
         ]);
     }
 }
