@@ -13,7 +13,7 @@
                         {{ user.email }}
                     </Link>
                     <div class="button-primary">
-                        <Link :href="route('listing.create')">Create listing</Link>
+                        <Link :href="route('realtor.listing.create')">Create listing</Link>
                     </div>
                     <div>
                         <Link :href="route('logout')" method="delete" as="button"> Logout </Link>

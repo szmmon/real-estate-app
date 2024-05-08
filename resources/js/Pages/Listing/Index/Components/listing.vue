@@ -13,8 +13,8 @@
                 </Link>
             </div>
             <div>
-                <Link :href="route('listing.edit', { listing: listing.id })"
-                    >Edit</Link
+                <Link :href="route('listing.show', { listing: listing.id })"
+                    >Show</Link
                 >
             </div>
         </box>
