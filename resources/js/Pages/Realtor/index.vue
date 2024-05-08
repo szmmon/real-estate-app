@@ -18,7 +18,8 @@
                     <Link class="btn-outline text-xs font-medium">
                         Edit
                     </Link>
-                    <Link class="btn-outline text-xs font-medium">
+                    <Link as="button" method="delete" 
+                    :href="route('realtor.listing.destroy', { listing: listing.id })" class="btn-outline text-xs font-medium">
                         Delete
                     </Link>
                 </div>
