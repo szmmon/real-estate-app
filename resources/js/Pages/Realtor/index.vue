@@ -4,8 +4,8 @@
         <RealtorFilters :filters="filters"/>
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-        <Box v-for="listing in listings.data" :key="listing.id">
-            <div class="flex flex-col md:flex-row gap-3 md:items-center justify-between">
+        <Box v-for="listing in listings.data" :key="listing.id" :class="{ 'border-dashed': listing.deleted_at }">
+            <div class="flex flex-col md:flex-row gap-3 md:items-center justify-between" :class="{ 'opacity-25': listing.deleted_at }">
                 <div class="xl:flex items-center gap-2">
                     <Price :price="listing.price" class="font-medium text-2xl"/>
                     <ListingSpace :listing="listing"/>
@@ -18,9 +18,17 @@
                     <Link as="button" :href="route('realtor.listing.edit', { listing: listing.id }) " class="btn-outline text-xs font-medium">
                         Edit
                     </Link>
-                    <Link as="button" method="delete" 
+                    <Link v-if="!listing.deleted_at" as="button" method="delete" 
                     :href="route('realtor.listing.destroy', { listing: listing.id })" class="btn-outline text-xs font-medium">
                         Delete
+                    </Link>
+                    <Link
+                        v-else 
+                        class="btn-outline text-xs font-medium" 
+                        :href="route('realtor.listing.restore', { listing: listing.id })" 
+                        as="button" 
+                        method="put">
+                        Restore
                     </Link>
                 </div>
             </div>

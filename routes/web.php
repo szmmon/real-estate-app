@@ -21,5 +21,10 @@ Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
 
 Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function(){
-    Route::resource('listing', RealtorListingController::class);
+    Route::name('listing.restore')->put(
+        'listing/{listing}/restore',
+        [RealtorListingController::class, 'restore']
+      )->withTrashed();
+      
+    Route::resource('listing', RealtorListingController::class)->withTrashed();
 });
