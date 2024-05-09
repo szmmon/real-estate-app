@@ -11,7 +11,8 @@
                     <ListingSpace :listing="listing"/>
                     <ListingAddress :listing="listing" class="text-gray-500"/>
                 </div>
-                <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
+                <section>
+                    <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                     <a as="button" target="_blank" :href="route('realtor.listing.show', { listing: listing.id }) " class="btn-outline text-xs font-medium" >
                         Preview
                     </a>
@@ -30,7 +31,12 @@
                         method="put">
                         Restore
                     </Link>
-                </div>
+                    </div>
+                    <div class="mt-2">
+                        <Link :href="route('realtor.listing.image.create', {listing: listing.id})" class="block w-full btn-outline text-xs font-md text-center"> Images
+                        </Link>
+                    </div>
+                </section>
             </div>
         </Box>
     </section>
