@@ -17,10 +17,6 @@
             <ListingAddress :listing="listing" class="text-gray" />
         </Box>
         <Box>
-            <template #header>Offer</template>
-            Make an offer
-        </Box>
-        <Box>
             <template #header>Monthly payment</template>
             <label class="label">Interest rate ({{interestRate}}%)</label>
                 <input type="range" min="0.1" max="30"  name="" id="" class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" v-model.number="interestRate">
@@ -51,9 +47,13 @@
               </div>
             </div>
           </div>
+        <MakeOffer 
+        
+        :listing-id="listing.id" 
+        :price="listing.price"
+        />
         </Box>
         </div>
-        
     </div>
 </template>
 
@@ -62,15 +62,21 @@ import Box from "@/Components/UI/box.vue";
 import ListingAddress from "@/Components/listingAddress.vue";
 import ListingSpace from "@/Components/listingSpace.vue";
 import Price from "@/Components/price.vue";
-
-import {ref} from 'vue'
+import MakeOffer from '@/Pages/Listing/Show/Components/makeOffer.vue'
+import {ref, computed} from 'vue'
 import {useMonthlyPayment} from '@/Composables/useMonthlyPayment'
+import { usePage } from "@inertiajs/vue3";
 
 const interestRate = ref(2.5)
 const duration = ref(25)
 const props = defineProps({
     listing: Object,
 });
+
+const page = usePage()
+const user = computed(
+  () => page.props.value.user,
+)
 
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
   props.listing.price, interestRate, duration,

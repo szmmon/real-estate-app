@@ -67,6 +67,10 @@ class Listing extends Model
         return $this->hasMany(ListingImage::class);
     }
 
+    public function offers():HasMany{
+        return $this->hasMany(Offer::class, 'listing_id');
+    }
+
 
     use HasFactory, SoftDeletes;
 
